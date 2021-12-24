@@ -1,33 +1,34 @@
 package ru.netology
 
 fun main() {
-    var lastVisit = 51
-    var lastVisit61 = 61
-    var lastVisit2401 = 2401
-    var lastVisitToday = 57601
-    var lastVisitYesterday = 115201
-    var lastVisitLongTimeAgo = 172801
+    val lastVisit = 115201
 
     when (lastVisit) {
-        in 0..60 -> agoToTextMinute(lastVisit)
-        /*in 61..2400 -> agoToTextMinute(lastVisit)
-        in 2401..57600 -> agoToTextHour(lastVisit)
-        in 57601..115200 -> agoToTextDay(lastVisit)
-        in 115201..172800 -> agoToTextTwoDay(lastVisit)
-        else -> agoToTextInfinity(lastVisit)*/
+        in 0..60 -> print("Был(а) в сети только что")
+        in 61..3600 -> agoToTextMinute(lastVisit)
+        in 3601..86400 -> agoToTextHour(lastVisit)
+        in 86401..115200 -> print("Был(а) в сети сегодня")
+        in 115201..172800 -> print("Был(а) в сети вчера")
+        else -> print("Был(а) в сети уже давненько")
     }
-
-
 }
 
-fun agoToTextNow(lastVisit: Int) {
-    print("Был(а) в сети только что")
-}
 fun agoToTextMinute(lastVisit: Int) {
-    var spell = if (lastVisit == 11) lastVisit else lastVisit % 10
+    val lastVisitMinute = lastVisit / 60
+    val spell = if (lastVisitMinute == 11) lastVisitMinute else lastVisitMinute % 10
     when (spell) {
-        1 -> print("Был(а) в сети $lastVisit минуту назад")
-        2, 3, 4 -> print("Был(а) в сети $lastVisit минуты назад")
-        else -> print("Был(а) в сети $lastVisit минут назад")
+        1 -> print("Был(а) в сети $lastVisitMinute минуту назад")
+        2, 3, 4 -> print("Был(а) в сети $lastVisitMinute минуты назад")
+        else -> print("Был(а) в сети $lastVisitMinute минут назад")
+    }
+}
+
+fun agoToTextHour(lastVisit: Int) {
+    val lastVisitHour = (lastVisit / 3600).toInt()
+    val spell = lastVisitHour % 10
+    when (spell) {
+        1 -> print("Был(а) в сети $lastVisitHour час назад")
+        2, 3, 4 -> print("Был(а) в сети $lastVisitHour часа назад")
+        else -> print("Был(а) в сети $lastVisitHour часов назад")
     }
 }
