@@ -1,7 +1,7 @@
 package ru.netology
 
 fun main() {
-    val lastVisit = 115201
+    val lastVisit = 2444
 
     when (lastVisit) {
         in 0..60 -> print("Был(а) в сети только что")
